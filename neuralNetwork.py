@@ -45,9 +45,9 @@ class neuralNetwork:
         self.weights_input_hidden += delta_wih
         pass
     
-    def mnist_train(self):
+    def mnist_train(self, mnist_train_path):
 
-        with open('mnist_dataset/mnist_train_100.csv', 'r') as mnist_train_file:
+        with open(mnist_train_path, 'r') as mnist_train_file:
             for mnist_train_line in mnist_train_file:
                 all_image_values = mnist_train_line.split(',')
 
@@ -60,11 +60,11 @@ class neuralNetwork:
                 self.train(scaled_input, scaled_output)
         pass
 
-    def mnist_test(self):
+    def mnist_test(self, mnist_test_path):
         right = 0
         wrong = 0
 
-        with open('mnist_dataset/mnist_test_10.csv', 'r') as mnist_test_file:
+        with open(mnist_test_path, 'r') as mnist_test_file:
             for mnist_test_line in mnist_test_file:
                 all_image_values = mnist_test_line.split(',')
 
@@ -80,12 +80,17 @@ class neuralNetwork:
                 else:
                     wrong += 1
 
-        print "Right " + str(right) + " Wrong " + str(wrong)
+        print "Right " + str(right) + " Wrong " + str(wrong) + " Overall " + str(right / (right + wrong)) 
+        pass
+
+    def mnist_small(self):
+        self.mnist_train('mnist_dataset/mnist_train_100.csv')
+        self.mnist_test('mnist_dataset/mnist_test_10.csv')
         pass
 
     def mnist(self):
-        self.mnist_train()
-        self.mnist_test()
+        self.mnist_train('mnist_dataset/mnist_train.csv')
+        self.mnist_test('mnist_dataset/mnist_test.csv')
         pass
 
     def contructScaledInput(self, mnist_line_image):
