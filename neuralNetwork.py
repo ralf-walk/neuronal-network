@@ -80,7 +80,7 @@ class neuralNetwork:
                 else:
                     wrong += 1
 
-        print "Right " + str(right) + " Wrong " + str(wrong) + " Overall " + str(right / (right + wrong)) 
+        print "Right " + str(right) + " Wrong " + str(wrong) + " Overall " + str(right / float(right + wrong)) 
         pass
 
     def mnist_small(self):
