@@ -112,4 +112,4 @@ class neuralNetwork:
 
     
 n = neuralNetwork(784, 100, 10, 0.3)
-n.mnist()
+n.mnist_small()
